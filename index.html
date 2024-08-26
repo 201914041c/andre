@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Proyecto</title>
+</head>
+<body>
+    <h1>Mi Proyecto en Netlify</h1>
+    <button id="fetchData">Obtener Datos</button>
+    <pre id="response"></pre>
+    
+    <script>
+        document.getElementById('fetchData').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/.netlify/functions/api');
+                const data = await response.json();
+                document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('response').textContent = 'Error fetching data: ' + error;
+            }
+        });
+    </script>
+</body>
+</html>
